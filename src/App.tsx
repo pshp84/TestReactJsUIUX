@@ -17,11 +17,13 @@ import RootLayout from "./components/RootLayout";
 import ClientDashboardPage from "./pages/ClientDashboardPage";
 import ProfessionalDashboardPage from "./pages/ProfessionalDashboardPage";
 import { ClientDashboardProvider } from "./context/ClientDashboardContext";
+import { RequestProvider } from "./context/RequestContext";
 
 function App() {
   return (
     <AuthProvider>
       <ClientDashboardProvider>
+        <RequestProvider>
       <Router>
         <Routes>
           <Route path="/" element={<RootLayout />}>
@@ -65,6 +67,7 @@ function App() {
         </Routes>
       </Router>
        <ToastContainer />
+       </RequestProvider>
       </ClientDashboardProvider>
     </AuthProvider>
   );

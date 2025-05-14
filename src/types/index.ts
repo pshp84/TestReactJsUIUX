@@ -1,9 +1,13 @@
 export interface User {
-  id: string;
+  id?: string;
   name: string;
   email: string;
   password?: string;
   role?: string;
+  specialty?: string;
+  city?: string;
+  phone?: string;
+  photo?: string;
 }
 
 export interface Service {
@@ -19,8 +23,14 @@ export interface AuthContextType {
   user: User | null;
   isAuthenticated: boolean;
   login: (email: string, password: string) => Promise<void>;
-  register: (name: string, email: string, password: string,role:string) => Promise<void>;
+  register: (
+    name: string,
+    email: string,
+    password: string,
+    role: string
+  ) => Promise<void>;
   logout: () => void;
+  updateUser?: (updatedUser: Partial<User>) => void;
 }
 
 export interface FormErrors {
@@ -41,5 +51,5 @@ export interface ClientServiceRequest {
   serviceType: string;
   date: string;
   time: string;
-  status: 'pending' | 'confirmed' | 'completed';
+  status: "pending" | "confirmed" | "completed";
 }

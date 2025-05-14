@@ -1,113 +1,126 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Layout } from "../components/Layout";
 import { ServiceCard } from "../components/ServiceCard";
-import { ServiceModal } from "../components/ServiceModal";
-import { Service } from "../types";
-import { Plus, Search } from "lucide-react";
+import { Search } from "lucide-react";
+import { Input } from "../components/Input";
 import { Button } from "../components/Button";
-import {
-  getServices,
-  addService as addServiceFunction,
-  updateService as updateServiceFunction,
-  deleteService as deleteServiceFunction,
-} from "../data/mock-data";
 import { useClientDashboard } from "../context/useClientDashboard";
+import { toast } from "react-toastify";
+import { useRequestContext } from "../context/useRequestContext";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import moment from "moment";
+
+interface FormData {
+  id?: string;
+  title: string;
+  city: string;
+  address: string;
+  serviceType: string;
+  date: string;
+  time?: string;
+}
+
+const initialFormData: FormData = {
+  id: "",
+  title: "",
+  city: "",
+  address: "",
+  serviceType: "",
+  date: "",
+  time: "",
+};
 
 const ClientDashboardPage = () => {
   const { mockServices } = useClientDashboard();
-  const [services, setServices] = useState<Service[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentService, setCurrentService] = useState<Service | undefined>(
-    undefined
-  );
+  const { addRequest, requests } = useRequestContext();
   const [searchTerm, setSearchTerm] = useState("");
-  const [notification, setNotification] = useState({ message: "", type: "" });
+  const [formData, setFormData] = useState(initialFormData);
+  const [errors, setErrors] = useState<Partial<FormData>>({});
+  const [searchRequest, setSearchRequest] = useState("");
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
-  useEffect(() => {
-    const fetchServices = async () => {
-      try {
-        const data = await getServices();
-        setServices(data);
-      } catch (error) {
-        console.error("Error fetching services:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchServices();
-  }, []);
-
-  const showNotification = (message: string, type: string) => {
-    setNotification({ message, type });
-
-    setTimeout(() => {
-      setNotification({ message: "", type: "" });
-    }, 3000);
+  const statusColors: Record<string, string> = {
+    Pending: "bg-yellow-500 text-yellow-900",
+    Confirmed: "bg-green-500 text-green-900",
+    InProgress: "bg-blue-500 text-blue-900",
+    Accepted: "bg-gray-500 text-gray-900",
+    Rejected: "bg-red-500 text-red-900",
   };
 
-  const handleAddClick = () => {
-    setCurrentService(undefined);
-    setIsModalOpen(true);
+  const sidebarLinks = [
+    { label: "Our Services", key: "services" },
+    { label: "Request Service", key: "request" },
+    { label: "Service Status", key: "status" },
+  ];
+
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleEditClick = (service: Service) => {
-    setCurrentService(service);
-    setIsModalOpen(true);
+  const validate = () => {
+    const newErrors: Partial<FormData> = {};
+
+    if (!formData.title) newErrors.title = "Title is required.";
+    if (!formData.city) newErrors.city = "City is required.";
+    if (!formData.address) newErrors.address = "Address is required.";
+    if (!formData.serviceType)
+      newErrors.serviceType = "Type of Service is required.";
+    if (!selectedDate) newErrors.date = "Date&Time is required.";
+
+    setErrors(newErrors);
+
+    return Object.keys(newErrors).length === 0;
   };
 
-  const handleAddService = async (serviceData: Omit<Service, "id">) => {
-    try {
-      const newService = await addServiceFunction(serviceData);
-      setServices((prev) => [...prev, newService]);
-      showNotification("Service successfully added", "success");
-    } catch (error) {
-      console.error("Error adding service:", error);
-      showNotification("Failed to add service", "error");
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!selectedDate) {
+      toast.success("Please select a valid date & time.", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      return;
     }
-  };
 
-  const handleUpdateService = async (serviceData: Omit<Service, "id">) => {
-    if (!currentService) return;
+    if (validate()) {
+      const data = {
+        id: crypto.randomUUID(),
+        title: formData.title,
+        city: formData.city,
+        address: formData.address,
+        serviceType: formData.serviceType,
+        date: selectedDate,
+        time: "",
+        status: "Pending" as const, 
+      };
+      addRequest(data);
+      const updatedRequests = [...requests, data];
+      localStorage.setItem("services", JSON.stringify(updatedRequests));
 
-    try {
-      const updatedService = await updateServiceFunction(
-        currentService.id,
-        serviceData
-      );
-
-      setServices((prev) =>
-        prev.map((service) =>
-          service.id === currentService.id ? updatedService : service
-        )
-      );
-
-      showNotification("Service successfully updated", "success");
-    } catch (error) {
-      console.error("Error updating service:", error);
-      showNotification("Failed to update service", "error");
-    }
-  };
-
-  const handleDeleteService = async (id: string) => {
-    if (window.confirm("Are you sure you want to delete this service?")) {
-      try {
-        await deleteServiceFunction(id);
-        setServices((prev) => prev.filter((service) => service.id !== id));
-        showNotification("Service successfully deleted", "success");
-      } catch (error) {
-        console.error("Error deleting service:", error);
-        showNotification("Failed to delete service", "error");
-      }
-    }
-  };
-
-  const handleSaveService = (serviceData: Omit<Service, "id">) => {
-    if (currentService) {
-      handleUpdateService(serviceData);
-    } else {
-      handleAddService(serviceData);
+      toast.success("Service request submitted successfully!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      setFormData(initialFormData);
+      setSelectedDate(null);
+      setErrors({});
     }
   };
 
@@ -116,92 +129,262 @@ const ClientDashboardPage = () => {
       service.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       service.description.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const filteredRequests = requests.filter(
+    (req) =>
+      req.serviceType.toLowerCase().includes(searchRequest.toLowerCase()) ||
+      req.city.toLowerCase().includes(searchRequest.toLowerCase()) ||
+      req.address.toLowerCase().includes(searchRequest.toLowerCase())
+  );
+
   return (
     <>
-      <Layout>
-        <div className="mb-6">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-            <div>
-              <h1 className="text-2xl font-bold text-white">Services</h1>
-            </div>
+      <Layout sidebarLinks={sidebarLinks}>
+        {(activeTab) => {
+          switch (activeTab) {
+            case "services":
+              return (
+                <>
+                  <div className="mb-6 mt-4">
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <Search className="w-5 h-5 text-gray-400" />
+                      </div>
+                      <input
+                        type="search"
+                        placeholder="Search services..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="w-full pl-10 pr-4 py-2 border border-gray-700 rounded-lg bg-gray-800 text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-colors"
+                      />
+                    </div>
+                  </div>
+                  {filteredServices.length > 0 ? (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+                      {filteredServices.map((service) => (
+                        <ServiceCard key={service.id} service={service} />
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="text-3xl font-bold text-white text-center">
+                      {"No services found."}
+                    </div>
+                  )}
+                </>
+              );
 
-            <Button onClick={handleAddClick}>
-              <Plus className="w-4 h-4 mr-2" />
-              Add Service
-            </Button>
-          </div>
+            case "request":
+              return (
+                <>
+                  <div className="w-full bg-gray-800 p-6 rounded-lg border border-gray-700">
+                    <h2 className="text-2xl font-semibold text-white mb-6">
+                      Request Service
+                    </h2>
+                    <form
+                      onSubmit={handleSubmit}
+                      className="grid grid-cols-1 md:grid-cols-2 gap-6"
+                    >
+                      <Input
+                        label="Title"
+                        name="title"
+                        value={formData.title}
+                        onChange={handleChange}
+                        error={errors.title}
+                      />
 
-          <div className="relative">
-            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-              <Search className="w-5 h-5 text-gray-400" />
-            </div>
-            <input
-              type="search"
-              placeholder="Search services..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-700 rounded-lg bg-gray-800 text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-colors"
-            />
-          </div>
-        </div>
+                      <div className="space-y-2 w-full">
+                        <label
+                          htmlFor="serviceType"
+                          className="block text-sm font-medium text-gray-300"
+                        >
+                          Type of Service
+                        </label>
+                        <select
+                          id="serviceType"
+                          name="serviceType"
+                          value={formData.serviceType}
+                          onChange={handleChange}
+                          className={`w-full px-3 py-2 bg-gray-800 text-white border rounded-lg transition-colors outline-none
+              ${
+                errors.serviceType
+                  ? "border-red-500 focus:border-red-500 focus:ring-1 focus:ring-red-500"
+                  : "border-gray-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+              }`}
+                        >
+                          <option value="">Select a service</option>
+                          {mockServices.map((service) => (
+                            <option key={service.id} value={service.name}>
+                              {service.name}
+                            </option>
+                          ))}
+                        </select>
+                        {errors.serviceType && (
+                          <p className="text-sm text-red-500 mt-1">
+                            {errors.serviceType}
+                          </p>
+                        )}
+                      </div>
 
-        {notification.message && (
-          <div
-            className={`mb-6 p-4 rounded-lg ${
-              notification.type === "success"
-                ? "bg-green-900/20 border border-green-800 text-green-400"
-                : "bg-red-900/20 border border-red-800 text-red-400"
-            } animate-in fade-in slide-in-from-top duration-300`}
-          >
-            {notification.message}
-          </div>
-        )}
+                      <div className="space-y-2 w-full">
+                        <label
+                          htmlFor="dateTime"
+                          className="block text-sm font-medium text-gray-300"
+                        >
+                          Select Date & Time
+                        </label>
+                        <DatePicker
+                          id="dateTime"
+                          selected={selectedDate}
+                          onChange={(date) => setSelectedDate(date)}
+                          showTimeSelect
+                          dateFormat="Pp"
+                          wrapperClassName="w-full"
+                          placeholderText="Select date and time"
+                          popperPlacement="bottom-start"
+                          className={`w-full px-3 py-2 bg-gray-800 text-white border rounded-lg outline-none
+      ${
+        errors.date
+          ? "border-red-500 focus:border-red-500 focus:ring-1 focus:ring-red-500"
+          : "border-gray-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+      }`}
+                        />
+                        {errors.date && (
+                          <p className="text-sm text-red-500 mt-1">
+                            {errors.date}
+                          </p>
+                        )}
+                      </div>
 
-        {isLoading ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 animate-pulse">
-            {[...Array(6)].map((_, index) => (
-              <div
-                key={index}
-                className="bg-gray-700 rounded-xl overflow-hidden h-80"
-              />
-            ))}
-          </div>
-        ) : filteredServices.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredServices.map((service) => (
-              <ServiceCard
-                key={service.id}
-                service={service}
-                onEdit={handleEditClick}
-                onDelete={handleDeleteService}
-              />
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-12">
-            <p className="text-gray-400">
-              {searchTerm
-                ? "No services match your search"
-                : "No services found"}
-            </p>
-            {searchTerm && (
-              <Button
-                variant="outline"
-                onClick={() => setSearchTerm("")}
-                className="mt-4"
-              >
-                Clear Search
-              </Button>
-            )}
-          </div>
-        )}
+                      <Input
+                        label="City"
+                        name="city"
+                        value={formData.city}
+                        onChange={handleChange}
+                        error={errors.city}
+                      />
+                      <div className="space-y-2 w-full">
+                        <label className="block text-sm font-medium text-gray-300">
+                          Address
+                        </label>
+                        <textarea
+                          name="address"
+                          value={formData.address}
+                          onChange={handleChange}
+                          rows={3}
+                          className={`w-full px-3 py-2 bg-gray-800 text-white border rounded-lg outline-none 
+          ${
+            errors.address
+              ? "border-red-500 focus:border-red-500 focus:ring-1 focus:ring-red-500"
+              : "border-gray-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+          }`}
+                        ></textarea>
+                        {errors.address && (
+                          <p className="text-sm text-red-500 mt-1">
+                            {errors.address}
+                          </p>
+                        )}
+                      </div>
 
-        <ServiceModal
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-          onSave={handleSaveService}
-          service={currentService}
-        />
+                      <div className="md:col-span-2 flex justify-end">
+                        <Button type="submit" className="cursor-pointer">
+                          Submit Request
+                        </Button>
+                      </div>
+                    </form>
+                  </div>
+                </>
+              );
+
+            case "status":
+              return (
+                <>
+                  <div className="space-y-4">
+                    <h2 className="text-2xl font-semibold text-white">
+                      Request Status
+                    </h2>
+                    {requests.length > 0 && (
+                      <div className="mb-6 mt-4">
+                        <div className="relative">
+                          <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                            <Search className="w-5 h-5 text-gray-400" />
+                          </div>
+                          <input
+                            type="search"
+                            placeholder="Search..."
+                            value={searchRequest}
+                            onChange={(e) => setSearchRequest(e.target.value)}
+                            className="w-full pl-10 pr-4 py-2 border border-gray-700 rounded-lg bg-gray-800 text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-colors"
+                          />
+                        </div>
+                      </div>
+                    )}
+                    {filteredRequests.length > 0 ? (
+                      <div className="overflow-x-auto">
+                        <table className="min-w-full bg-gray-800 rounded-xl text-gray-300">
+                          <thead>
+                            <tr>
+                              <th className="px-4 py-3 text-left border-b border-gray-700">
+                                Title
+                              </th>
+                              <th className="px-4 py-3 text-left border-b border-gray-700">
+                                Service Type
+                              </th>
+                              <th className="px-4 py-3 text-left border-b border-gray-700">
+                                City
+                              </th>
+                              <th className="px-4 py-3 text-left border-b border-gray-700">
+                                Address
+                              </th>
+                              <th className="px-4 py-3 text-left border-b border-gray-700">
+                                Date
+                              </th>
+                              <th className="px-4 py-3 text-left border-b border-gray-700">
+                                Status
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {filteredRequests.map((req, index) => (
+                              <tr
+                                key={index}
+                                className="hover:bg-gray-700 transition"
+                              >
+                                <td className="px-4 py-3">{req.title}</td>
+                                <td className="px-4 py-3">{req.serviceType}</td>
+                                <td className="px-4 py-3">{req.city}</td>
+                                <td className="px-4 py-3">{req.address}</td>
+                                <td className="px-4 py-3">
+                                  {moment(req.date).format(
+                                    "MMM D, YYYY h:mm A"
+                                  )}
+                                </td>
+                                <td className="px-4 py-3">
+                                  <span
+                                    className={`px-3 py-1 rounded-full text-sm ${
+                                      statusColors[req.status || "Pending"]
+                                    }`}
+                                  >
+                                    {req.status || "Pending"}
+                                  </span>
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    ) : (
+                      <div className="text-3xl font-bold text-white text-center">
+                        No requested services are found.
+                      </div>
+                    )}
+                  </div>
+                </>
+              );
+
+            default:
+              return null;
+          }
+        }}
       </Layout>
     </>
   );
