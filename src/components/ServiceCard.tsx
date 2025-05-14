@@ -1,10 +1,10 @@
 import React from 'react';
-import { Service } from '../types';
+import { ClientService, Service } from '../types';
 import { Edit, Trash2 } from 'lucide-react';
 import { Button } from './Button';
 
 interface ServiceCardProps {
-  service: Service;
+  service: ClientService;
   onEdit: (service: Service) => void;
   onDelete: (id: string) => void;
 }
@@ -48,9 +48,9 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service, onEdit, onDel
       </div>
       <div className="p-4">
         <div className="mb-2">
-          <span className="inline-block px-2 py-1 text-xs font-medium bg-blue-900 text-blue-300 rounded-full capitalize">
+          {/* <span className="inline-block px-2 py-1 text-xs font-medium bg-blue-900 text-blue-300 rounded-full capitalize">
             {service.category}
-          </span>
+          </span> */}
         </div>
         <h3 className="font-semibold text-lg text-white mb-1">
           {service.name}
@@ -58,9 +58,9 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service, onEdit, onDel
         <p className="text-gray-300 text-sm mb-3 line-clamp-2">
           {service.description}
         </p>
-        <p className="text-lg font-bold text-green-400">
+        {/* <p className="text-lg font-bold text-green-400">
           {formatPrice(service.price)}
-        </p>
+        </p> */}
       </div>
     </div>
   );

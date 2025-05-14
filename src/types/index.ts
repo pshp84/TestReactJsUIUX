@@ -3,6 +3,7 @@ export interface User {
   name: string;
   email: string;
   password?: string;
+  role?: string;
 }
 
 export interface Service {
@@ -18,10 +19,27 @@ export interface AuthContextType {
   user: User | null;
   isAuthenticated: boolean;
   login: (email: string, password: string) => Promise<void>;
-  register: (name: string, email: string, password: string) => Promise<void>;
+  register: (name: string, email: string, password: string,role:string) => Promise<void>;
   logout: () => void;
 }
 
 export interface FormErrors {
   [key: string]: string;
+}
+
+export interface ClientService {
+  id: number;
+  name: string;
+  description: string;
+  imageUrl?: string;
+}
+
+export interface ClientServiceRequest {
+  id: number;
+  city: string;
+  address: string;
+  serviceType: string;
+  date: string;
+  time: string;
+  status: 'pending' | 'confirmed' | 'completed';
 }

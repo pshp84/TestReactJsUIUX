@@ -6,6 +6,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<any> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
+  console.log(user)
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
   useEffect(() => {
@@ -33,9 +34,9 @@ export const AuthProvider: React.FC<any> = ({ children }) => {
     }
   };
 
-  const register = async (name: string, email: string, password: string) => {
+  const register = async (name: string, email: string, password: string,role:string) => {
     try {
-      const newUser = await registerFunction(name, email, password);
+      const newUser = await registerFunction(name, email, password, role);
       setUser(newUser);
       setIsAuthenticated(true);
       localStorage.setItem('user', JSON.stringify(newUser));

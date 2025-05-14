@@ -1,1 +1,30 @@
 @import "tailwindcss";
+
+.btn-cancel-primary {
+  background-color: #fff;
+  border-color: rgb(209, 213, 219);
+}
+
+.btn-cancel-primary:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px white, 0 0 0 4px #00abc7;
+}
+
+.btn-cancel-primary:hover {
+  background-color: rgb(249, 250, 251) !important;
+}
+
+.btn-new-primary {
+  background-color: #00abc7 !important;
+}
+
+.btn-new-primary:hover {
+  background-color: #00c9de !important;
+}
+
+.btn-new-primary:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px white, 0 0 0 4px #00abc7;
+}

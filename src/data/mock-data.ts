@@ -128,7 +128,7 @@ export const login = (email: string, password: string): Promise<User> => {
   });
 };
 
-export const register = (name: string, email: string, password: string): Promise<User> => {
+export const register = (name: string, email: string, password: string , role:string): Promise<User> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       const existingUser = mockUsers.find(u => u.email === email);
@@ -141,7 +141,8 @@ export const register = (name: string, email: string, password: string): Promise
         id: Math.random().toString(36).substring(2, 9),
         name,
         email,
-        password
+        password,
+        role
       };
       
       mockUsers.push(newUser);
