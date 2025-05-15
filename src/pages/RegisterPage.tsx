@@ -14,15 +14,6 @@ export const RegisterPage: React.FC = () => {
   const { register } = useAuth();
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   const storedUser = localStorage.getItem("user");
-  //   console.log(storedUser);
-  //   if (storedUser) {
-  //     navigate("/login");
-  //   }
-  //   // eslint-disable-next-line
-  // }, []);
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
@@ -49,7 +40,7 @@ export const RegisterPage: React.FC = () => {
       setEmail("");
       setName("");
       setPassword("");
-      console.log(err.message || "Registration failed. Please try again.");
+      setIsLoading(false);
       console.error("Registration error:", error);
     } finally {
       setIsLoading(false);
@@ -132,6 +123,7 @@ export const RegisterPage: React.FC = () => {
                     name="email"
                     id="email"
                     value={email}
+                    autoComplete="email"
                     onChange={(e) => setEmail(e.target.value)}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="name@company.com"
@@ -160,6 +152,7 @@ export const RegisterPage: React.FC = () => {
                     id="password"
                     placeholder="••••••••"
                     value={password}
+                    autoComplete="current-password"
                     onChange={(e) => setPassword(e.target.value)}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required

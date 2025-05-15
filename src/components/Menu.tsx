@@ -12,7 +12,7 @@ export function Menu() {
   OutsideMenu(ref, () => {
     setToggle(true);
   });
-  const toggleMenu = (e:any) => {
+  const toggleMenu = (e: any) => {
     if (e) {
       e.preventDefault();
     }
@@ -49,13 +49,21 @@ export function Menu() {
                 <ListItem>About</ListItem>
               </NavLink>
               <hr className="my-2 border-blue-gray-50" />
-              {/* <NavLink to="/Services">
+              <NavLink to="/Services">
                 <ListItem>Services</ListItem>
               </NavLink>
-              <hr className="my-2 border-blue-gray-50" /> */}
-              {/* <NavLink to="/Contact">
-                <ListItem>Contact</ListItem>
-              </NavLink> */}
+              <hr className="my-2 border-blue-gray-50" />
+              <NavLink to={"/register"} className={"w-full"}>
+                <button
+                  type="button"
+                  className="cursor-pointer flex flex-row justify-center items-start py-4 px-8 bg-[#7A9CA5] rounded-[4px] overflow-hidden group relative "
+                >
+                  <div className="absolute inset-0 w-0 bg-[#5C8692] transition-all duration-[200ms] ease-out group-hover:w-full"></div>
+                  <span className="text-white font-normal font-manrope text-[16px] uppercase leading-[17.5px] relative ">
+                    Register
+                  </span>
+                </button>
+              </NavLink>
             </List>
           </List>
         </Card>

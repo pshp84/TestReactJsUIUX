@@ -319,26 +319,26 @@ const ClientDashboardPage = () => {
                       </div>
                     )}
                     {filteredRequests.length > 0 ? (
-                      <div className="overflow-x-auto">
-                        <table className="min-w-full bg-gray-800 rounded-xl text-gray-300">
+                      <div className="w-full overflow-x-auto">
+                        <table className="min-w-[800px] w-full bg-gray-800 rounded-xl text-gray-300">
                           <thead>
                             <tr>
-                              <th className="px-4 py-3 text-left border-b border-gray-700">
+                              <th className="whitespace-nowrap px-4 py-3 text-left border-b border-gray-700">
                                 Title
                               </th>
-                              <th className="px-4 py-3 text-left border-b border-gray-700">
+                              <th className="whitespace-nowrap px-4 py-3 text-left border-b border-gray-700">
                                 Service Type
                               </th>
-                              <th className="px-4 py-3 text-left border-b border-gray-700">
+                              <th className="whitespace-nowrap px-4 py-3 text-left border-b border-gray-700">
                                 City
                               </th>
-                              <th className="px-4 py-3 text-left border-b border-gray-700">
+                              <th className="whitespace-nowrap px-4 py-3 text-left border-b border-gray-700">
                                 Address
                               </th>
-                              <th className="px-4 py-3 text-left border-b border-gray-700">
+                              <th className="whitespace-nowrap px-4 py-3 text-left border-b border-gray-700">
                                 Date
                               </th>
-                              <th className="px-4 py-3 text-left border-b border-gray-700">
+                              <th className="whitespace-nowrap px-4 py-3 text-left border-b border-gray-700">
                                 Status
                               </th>
                             </tr>
@@ -349,16 +349,16 @@ const ClientDashboardPage = () => {
                                 key={index}
                                 className="hover:bg-gray-700 transition"
                               >
-                                <td className="px-4 py-3">{req.title}</td>
-                                <td className="px-4 py-3">{req.serviceType}</td>
-                                <td className="px-4 py-3">{req.city}</td>
-                                <td className="px-4 py-3">{req.address}</td>
-                                <td className="px-4 py-3">
+                                <td className="whitespace-nowrap px-4 py-3">{req.title}</td>
+                                <td className="whitespace-nowrap px-4 py-3">{req.serviceType}</td>
+                                <td className="whitespace-nowrap px-4 py-3">{req.city}</td>
+                                <td className="whitespace-nowrap px-4 py-3">{req.address}</td>
+                                <td className="whitespace-nowrap px-4 py-3">
                                   {moment(req.date).format(
                                     "MMM D, YYYY h:mm A"
                                   )}
                                 </td>
-                                <td className="px-4 py-3">
+                                <td className="whitespace-nowrap px-4 py-3">
                                   <span
                                     className={`px-3 py-1 rounded-full text-sm ${
                                       statusColors[req.status || "Pending"]

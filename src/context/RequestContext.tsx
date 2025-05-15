@@ -13,7 +13,7 @@ interface RequestData {
 
 const mockRequests: RequestData[] = [
   {
-    id: "1",
+    id: "e2b987cb-20f7-4ef4-9d9f-23f5b45f5fd7",
     title: "Makeup Booking",
     city: "New York",
     address: "123 St",
@@ -22,7 +22,7 @@ const mockRequests: RequestData[] = [
     status: "Pending",
   },
   {
-    id: "2",
+    id: "f87b8c52-1fbe-450d-9029-5c2125adf2c0",
     title: "Haircut Appointment",
     city: "Los Angeles",
     address: "456 Ave",
@@ -36,6 +36,7 @@ interface RequestContextType {
   requests: RequestData[];
   addRequest: (request: Omit<RequestData, "status">) => void;
   updateRequestStatus?: (index: number, status: string) => void;
+  deleteRequest?: (id: string) => void;
 }
 
 export const RequestContext = createContext<RequestContextType | undefined>(
@@ -50,14 +51,21 @@ export const RequestProvider: React.FC<{ children: ReactNode }> = ({
   const addRequest = (request: Omit<RequestData, "status">) => {
     const newRequest = { ...request, status };
     setRequests((prev) => [...prev, newRequest]);
-
   };
 
   const updateRequestStatus = (index: number, newStatus: string) => {
     setRequests((prev) => {
       const updated = [...prev];
       updated[index] = { ...updated[index], status: newStatus };
-      
+
+      localStorage.setItem("services", JSON.stringify(updated));
+      return updated;
+    });
+  };
+
+  const deleteRequest = (id: string) => {
+    setRequests((prev) => {
+      const updated = prev.filter((request) => request.id !== id);
       localStorage.setItem("services", JSON.stringify(updated));
       return updated;
     });
@@ -65,7 +73,7 @@ export const RequestProvider: React.FC<{ children: ReactNode }> = ({
 
   return (
     <RequestContext.Provider
-      value={{ requests, addRequest, updateRequestStatus }}
+      value={{ requests, addRequest, updateRequestStatus,deleteRequest }}
     >
       {children}
     </RequestContext.Provider>

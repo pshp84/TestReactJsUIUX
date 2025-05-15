@@ -14,7 +14,10 @@ export default function RootLayout() {
       navigate("/dashboard/client");
     } else if (user?.role === "professional") {
       navigate("/dashboard/professional");
+    } else if (user?.role === "admin") {
+      navigate("/dashboard");
     }
+  // eslint-disable-next-line
   }, []);
 
   return (

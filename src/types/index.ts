@@ -31,6 +31,8 @@ export interface AuthContextType {
   ) => Promise<void>;
   logout: () => void;
   updateUser?: (updatedUser: Partial<User>) => void;
+  deleteUser?: (userId: string) => void;
+  registered?: User[] | null;
 }
 
 export interface FormErrors {

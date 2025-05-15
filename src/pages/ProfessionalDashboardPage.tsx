@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Layout } from "../components/Layout";
 import { useRequestContext } from "../context/useRequestContext";
 import { Button } from "../components/Button";
@@ -71,8 +72,10 @@ const ProfessionalDashboardPage = () => {
                                     "MMM D, YYYY h:mm A"
                                   )}
                                 </td>
-                                <td className="px-4 py-3">{req.status || "Pending"}</td>
-                                <td className="px-4 py-3 space-x-2">
+                                <td className="px-4 py-3">
+                                  {req.status || "Pending"}
+                                </td>
+                                {/* <td className="px-4 py-3 space-x-2">
                                   <Button
                                     className="bg-green-600 cursor-pointer"
                                     onClick={() =>
@@ -95,6 +98,32 @@ const ProfessionalDashboardPage = () => {
                                   >
                                     View
                                   </Button>
+                                </td> */}
+                                <td className="px-4 py-3">
+                                  <div className="flex flex-wrap gap-2 sm:flex-nowrap sm:space-x-2">
+                                    <Button
+                                      className="bg-green-600 flex-1 sm:flex-none cursor-pointer"
+                                      onClick={() =>
+                                        handleStatusChange(index, "Confirmed")
+                                      }
+                                    >
+                                      Accept
+                                    </Button>
+                                    <Button
+                                      className="bg-red-600 flex-1 sm:flex-none cursor-pointer"
+                                      onClick={() =>
+                                        handleStatusChange(index, "Rejected")
+                                      }
+                                    >
+                                      Reject
+                                    </Button>
+                                    <Button
+                                      className="bg-blue-600 flex-1 sm:flex-none cursor-pointer"
+                                      onClick={() => setSelectedRequest(req)}
+                                    >
+                                      View
+                                    </Button>
+                                  </div>
                                 </td>
                               </tr>
                             ))}
@@ -138,7 +167,8 @@ const ProfessionalDashboardPage = () => {
                             )}
                           </p>
                           <p>
-                            <strong>Status:</strong> {selectedRequest.status || "Pending"}
+                            <strong>Status:</strong>{" "}
+                            {selectedRequest.status || "Pending"}
                           </p>
                           {/* <Button
                             className="bg-gray-700 w-full cursor-pointer"

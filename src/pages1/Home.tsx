@@ -1,11 +1,9 @@
 import {
   About,
-  Appointment,
   Banner,
   Benefits,
   Features,
   Latest,
-  Testimonials,
 } from "../components/Home";
 
 import styles from "../styles";

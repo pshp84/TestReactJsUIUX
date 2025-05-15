@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { toast } from "react-toastify";
@@ -13,13 +13,14 @@ export const LoginPage: React.FC = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   const storedUser = localStorage.getItem("user");
-  //   console.log(storedUser);
-  //   if (storedUser) {
-  //     navigate("/dashboard");
-  //   }
-  // }, []);
+useEffect(() => {
+  if (user) {
+    if (user.role === 'admin') navigate('/dashboard');
+    else if (user.role === 'client') navigate('/dashboard/client');
+    else if (user.role === 'professional') navigate('/dashboard/professional');
+  }
+}, [user, navigate]);
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,18 +32,10 @@ export const LoginPage: React.FC = () => {
 
     try {
       await login(email, password);
-       if (user?.role === "admin") {
-        navigate("/dashboard");
-        return;
-      }else if (user?.role === "client") {
-        navigate("/dashboard/client");
-      } else if (user?.role === "professional") {
-        navigate("/dashboard/professional");
-      }
+      setIsLoading(false);
     } catch (error) {
-      console.log("Invalid email or password. Please try again.");
       console.error("Login error:", error);
-      toast.error("Invalid email or password. Please try again.", {
+      toast.error(("Invalid email or password. Please try again."), {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -85,6 +78,7 @@ export const LoginPage: React.FC = () => {
                     className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="name@company.com"
                     required
+                    autoComplete="email"
                   />
                   {submitted && !email && (
                     <div className="mt-2 text-red-500">
@@ -111,6 +105,7 @@ export const LoginPage: React.FC = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••"
+                    autoComplete="current-password"
                     className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required
                   />

@@ -24,50 +24,50 @@ function App() {
     <AuthProvider>
       <ClientDashboardProvider>
         <RequestProvider>
-      <Router>
-        <Routes>
-          <Route path="/" element={<RootLayout />}>
-            <Route index element={<Home />} />
-            <Route path="/About" element={<About />} />
-            <Route path="/Services" element={<Services />} />
-            <Route path="/Contact" element={<Contact />} />
-            <Route path="/Blog" element={<Blog />} />
-            <Route path="/Reservation" element={<Reservation />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-          </Route>
+          <Router>
+            <Routes>
+              <Route path="/" element={<RootLayout />}>
+                <Route index element={<Home />} />
+                <Route path="/About" element={<About />} />
+                <Route path="/Services" element={<Services />} />
+                <Route path="/Contact" element={<Contact />} />
+                <Route path="/Blog" element={<Blog />} />
+                <Route path="/Reservation" element={<Reservation />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/register" element={<RegisterPage />} />
+              </Route>
 
-          <Route
-            path="/dashboard"
-            element={
-              <ProtectedRoutes>
-                <DashboardPage />
-              </ProtectedRoutes>
-            }
-          />
-          <Route
-            path="/dashboard/client"
-            element={
-              <ProtectedRoutes>
-                <ClientDashboardPage />
-              </ProtectedRoutes>
-            }
-          />
-          <Route
-            path="/dashboard/professional"
-            element={
-              <ProtectedRoutes>
-                <ProfessionalDashboardPage />
-              </ProtectedRoutes>
-            }
-          />
-          <Route path="/not-found" element={<NotFoundPage />} />
-          {/* <Route path="/" element={<Navigate to="/dashboard" replace />} /> */}
-          <Route path="*" element={<Navigate to="/not-found" replace />} />
-        </Routes>
-      </Router>
-       <ToastContainer />
-       </RequestProvider>
+              <Route
+                path="/dashboard"
+                element={
+                  <ProtectedRoutes>
+                    <DashboardPage />
+                  </ProtectedRoutes>
+                }
+              />
+              <Route
+                path="/dashboard/client"
+                element={
+                  <ProtectedRoutes>
+                    <ClientDashboardPage />
+                  </ProtectedRoutes>
+                }
+              />
+              <Route
+                path="/dashboard/professional"
+                element={
+                  <ProtectedRoutes>
+                    <ProfessionalDashboardPage />
+                  </ProtectedRoutes>
+                }
+              />
+              <Route path="/not-found" element={<NotFoundPage />} />
+              {/* <Route path="/" element={<Navigate to="/dashboard" replace />} /> */}
+              <Route path="*" element={<Navigate to="/not-found" replace />} />
+            </Routes>
+          </Router>
+          <ToastContainer />
+        </RequestProvider>
       </ClientDashboardProvider>
     </AuthProvider>
   );

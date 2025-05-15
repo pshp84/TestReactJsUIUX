@@ -53,6 +53,10 @@ import story3 from "./story3.jpg";
 import story4 from "./story4.jpg";
 import story5 from "./story5.jpg";
 import story6 from "./story6.jpg";
+import manicure from "./Manicure.jpg"
+import hairdye from "./hairdye.jpg";
+import barber from "./barber.jpg";
+import blowdry from "./blowdry.png"
 
 export {
   Logo,
@@ -110,4 +114,8 @@ export {
   story4,
   story5,
   story6,
+  manicure,
+  hairdye,
+  barber,
+  blowdry
 };

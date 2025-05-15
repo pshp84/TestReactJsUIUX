@@ -5,9 +5,6 @@ import {
   faLinkedin,
   faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
-import { Logo_white } from "../assets/index";
-import styles from "../styles";
-import { footerLinks } from "../data";
 
 const Footer = () => (
   <div className="flex flex-col ">
@@ -19,7 +16,7 @@ const Footer = () => (
             alt="Logo_white"
             className="w-[298px] h-[65px] object-contain"
           /> */}
-                    <div className="text-2xl text-white">UrbanGlow</div>
+          <div className="text-2xl text-white">UrbanGlow</div>
         </div>
         <div className="flex md:justify-end justify-center items-center md:ml-auto ml-2 md:gap-2 sm:gap-4 gap-8">
           <FontAwesomeIcon
@@ -69,7 +66,7 @@ const Footer = () => (
     </div>
     <div className="flex items-center justify-center bg-[#111E22] py-2">
       <p className="text-[#FFF] font-manrope sm:text-[18px] text-center text-[15px] font-normal leading-[200%] py-1 px-3">
-        © Copyright 2023 Urbanglow. All Rights Reserved.
+        © Copyright 2025 Urbanglow. All Rights Reserved.
       </p>
     </div>
   </div>
