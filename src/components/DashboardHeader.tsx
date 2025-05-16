@@ -20,7 +20,7 @@ const DashboardHeader: React.FC = () => {
             variant="outline" 
             onClick={logout}
           >
-            Logout
+            Cerrar sesión
           </Button>
         </div>
       </div>

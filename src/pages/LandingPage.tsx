@@ -27,10 +27,10 @@ const LandingPage: React.FC = () => {
           <div className="flex flex-col md:flex-row items-center">
             <div className="md:w-1/2 mb-10 md:mb-0">
               <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6 leading-tight">
-                Bringing Beauty & Wellness to Your Doorstep
+                Llevando la belleza y el bienestar a la puerta de tu casa
               </h1>
               <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-                G-UrbanGlow connects you with skilled beauty and wellness professionals who provide premium services in the comfort of your home.
+                G-UrbanGlow lo conecta con profesionales calificados en belleza y bienestar que brindan servicios premium en la comodidad de su hogar.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button 
@@ -39,7 +39,7 @@ const LandingPage: React.FC = () => {
                   onClick={handleGetStarted}
                   className="flex items-center justify-center"
                 >
-                  Get Started <ChevronRight size={18} className="ml-1" />
+                  Comenzar <ChevronRight size={18} className="ml-1" />
                 </Button>
                 <Button 
                   variant="outline" 
@@ -49,7 +49,7 @@ const LandingPage: React.FC = () => {
                     setShowAuthModal(true);
                   }}
                 >
-                  Login
+                  Iniciar sesión
                 </Button>
               </div>
             </div>
@@ -67,9 +67,9 @@ const LandingPage: React.FC = () => {
       <section id="services" className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">Our Services</h2>
+            <h2 className="text-3xl font-bold text-gray-800 mb-4">Nuestros Servicios</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Discover our wide range of beauty and wellness services, delivered by experienced professionals right to your doorstep.
+            Descubra nuestra amplia gama de servicios de belleza y bienestar, prestados por profesionales experimentados directamente en la puerta de su casa.
             </p>
           </div>
           
@@ -84,9 +84,9 @@ const LandingPage: React.FC = () => {
       <section id="how-it-works" className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">How It Works</h2>
+            <h2 className="text-3xl font-bold text-gray-800 mb-4">Cómo Funciona</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Getting beauty and wellness services at home has never been easier. Simply follow these steps:
+              Obtener servicios de belleza y bienestar en casa nunca ha sido tan fácil. Solo tienes que seguir estos pasos:
             </p>
           </div>
           
@@ -95,9 +95,9 @@ const LandingPage: React.FC = () => {
               <div className="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center text-pink-500 font-bold text-xl mx-auto mb-4">
                 1
               </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-2">Browse</h3>
+              <h3 className="text-xl font-bold text-gray-800 mb-2">Hojear</h3>
               <p className="text-gray-600">
-                Explore our range of services and choose the one that fits your needs.
+                Explore nuestra gama de servicios y elija el que se adapte a sus necesidades.
               </p>
             </div>
 
@@ -105,9 +105,9 @@ const LandingPage: React.FC = () => {
               <div className="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center text-pink-500 font-bold text-xl mx-auto mb-4">
                 2
               </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-2">Book</h3>
+              <h3 className="text-xl font-bold text-gray-800 mb-2">Reserva</h3>
               <p className="text-gray-600">
-                Select your preferred date, time, and provide your address details.
+                Seleccione la fecha y hora que prefiera y proporcione los detalles de su dirección.
               </p>
             </div>
 
@@ -115,9 +115,9 @@ const LandingPage: React.FC = () => {
               <div className="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center text-pink-500 font-bold text-xl mx-auto mb-4">
                 3
               </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-2">Relax</h3>
+              <h3 className="text-xl font-bold text-gray-800 mb-2">Relajar</h3>
               <p className="text-gray-600">
-                Our professional will arrive at your doorstep. Just sit back and enjoy!
+                Nuestro profesional llegará a la puerta de su casa. ¡Siéntate y disfruta!
               </p>
             </div>
           </div>
@@ -127,9 +127,9 @@ const LandingPage: React.FC = () => {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">What Our Clients Say</h2>
+            <h2 className="text-3xl font-bold text-gray-800 mb-4">Lo que dicen nuestros clientes</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Read about the experiences of people who have used our services.
+              Lea sobre las experiencias de las personas que han utilizado nuestro servicio.
             </p>
           </div>
           
@@ -168,9 +168,9 @@ const LandingPage: React.FC = () => {
 
       <section className="py-16 bg-pink-50">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-gray-800 mb-6">Ready to Experience G-UrbanGlow?</h2>
+          <h2 className="text-3xl font-bold text-gray-800 mb-6">¿Listo para experimentar G-UrbanGlow?</h2>
           <p className="text-gray-600 max-w-2xl mx-auto mb-8">
-            Join thousands of satisfied clients who enjoy beauty and wellness services in the comfort of their homes.
+            Únase a miles de clientes satisfechos que disfrutan de los servicios de belleza y bienestar en la comodidad de sus hogares.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Button 
@@ -178,7 +178,7 @@ const LandingPage: React.FC = () => {
               size="lg"
               onClick={handleGetStarted}
             >
-              Get Started
+              Comenzar
             </Button>
             <Button 
               variant="outline" 
@@ -188,7 +188,7 @@ const LandingPage: React.FC = () => {
                 setShowAuthModal(true);
               }}
             >
-              Login
+              Iniciar sesión
             </Button>
           </div>
         </div>

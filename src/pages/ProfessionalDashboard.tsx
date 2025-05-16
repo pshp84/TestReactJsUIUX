@@ -15,10 +15,10 @@ const ProfessionalDashboard: React.FC = () => {
   const [editingProfile, setEditingProfile] = useState(false);
   const [profileData, setProfileData] = useState({
     name: user?.name || '',
-    specialty: 'Hair Styling',
+    specialty: 'Peinado',
     phone: '(555) 123-4567',
     city: 'San Francisco',
-    bio: 'Professional stylist with 5 years of experience specializing in modern cuts and color techniques.',
+    bio: 'Estilista profesional con 5 años de experiencia especializada en cortes modernos y técnicas de color.',
   });
   
   const [allBookings, setAllBookings] = useState(bookings);
@@ -61,7 +61,7 @@ const ProfessionalDashboard: React.FC = () => {
         <Card className="mb-8">
           <CardHeader>
             <div className="flex justify-between items-center">
-              <CardTitle>Professional Profile</CardTitle>
+              <CardTitle>Perfil Profesional</CardTitle>
               <Button 
                 variant="ghost" 
                 size="sm"
@@ -69,11 +69,11 @@ const ProfessionalDashboard: React.FC = () => {
               >
                 {editingProfile ? (
                   <>
-                    <Save size={16} className="mr-1" /> Save
+                    <Save size={16} className="mr-1" /> Salvar
                   </>
                 ) : (
                   <>
-                    <Pencil size={16} className="mr-1" /> Edit
+                    <Pencil size={16} className="mr-1" /> Editar
                   </>
                 )}
               </Button>
@@ -85,7 +85,7 @@ const ProfessionalDashboard: React.FC = () => {
                 <div className="w-32 h-32 bg-gray-200 rounded-full flex items-center justify-center mb-4">
                   <User size={48} className="text-gray-500" />
                 </div>
-                <Badge variant="default">Professional</Badge>
+                <Badge variant="default">Profesional</Badge>
               </div>
               
               <div className="md:w-3/4">
@@ -93,25 +93,25 @@ const ProfessionalDashboard: React.FC = () => {
                   <div className="space-y-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <Input
-                        label="Full Name"
+                        label="Nombre completo"
                         name="name"
                         value={profileData.name}
                         onChange={handleProfileChange}
                       />
                       <Input
-                        label="Specialty"
+                        label="Especialidad"
                         name="specialty"
                         value={profileData.specialty}
                         onChange={handleProfileChange}
                       />
                       <Input
-                        label="Phone"
+                        label="Teléfono"
                         name="phone"
                         value={profileData.phone}
                         onChange={handleProfileChange}
                       />
                       <Input
-                        label="City"
+                        label="Ciudad"
                         name="city"
                         value={profileData.city}
                         onChange={handleProfileChange}
@@ -119,7 +119,7 @@ const ProfessionalDashboard: React.FC = () => {
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Bio
+                        Biografía
                       </label>
                       <textarea
                         name="bio"
@@ -137,15 +137,15 @@ const ProfessionalDashboard: React.FC = () => {
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                       <div>
-                        <span className="text-gray-500">Specialty:</span>
+                        <span className="text-gray-500">Especialidad:</span>
                         <span className="ml-2 font-medium">{profileData.specialty}</span>
                       </div>
                       <div>
-                        <span className="text-gray-500">Phone:</span>
+                        <span className="text-gray-500">Teléfono:</span>
                         <span className="ml-2 font-medium">{profileData.phone}</span>
                       </div>
                       <div>
-                        <span className="text-gray-500">City:</span>
+                        <span className="text-gray-500">Ciudad:</span>
                         <span className="ml-2 font-medium">{profileData.city}</span>
                       </div>
                     </div>
@@ -161,7 +161,7 @@ const ProfessionalDashboard: React.FC = () => {
           <Card>
             <CardHeader>
               <div className="flex justify-between items-center">
-                <CardTitle>Pending Requests</CardTitle>
+                <CardTitle>Solicitudes pendientes</CardTitle>
                 <Badge variant="default">{pendingBookings.length}</Badge>
               </div>
             </CardHeader>
@@ -179,7 +179,7 @@ const ProfessionalDashboard: React.FC = () => {
                   ))
                 ) : (
                   <p className="text-gray-500 text-center py-8">
-                    No pending requests at the moment.
+                    No hay solicitudes pendientes en este momento.
                   </p>
                 )}
               </div>
@@ -189,7 +189,7 @@ const ProfessionalDashboard: React.FC = () => {
           <Card>
             <CardHeader>
               <div className="flex justify-between items-center">
-                <CardTitle>Upcoming Appointments</CardTitle>
+                <CardTitle>Próximas citas</CardTitle>
                 <Badge variant="success">{acceptedBookings.length}</Badge>
               </div>
             </CardHeader>
@@ -205,7 +205,7 @@ const ProfessionalDashboard: React.FC = () => {
                   ))
                 ) : (
                   <p className="text-gray-500 text-center py-8">
-                    No upcoming appointments.
+                    No hay próximas citas.
                   </p>
                 )}
               </div>
@@ -216,7 +216,7 @@ const ProfessionalDashboard: React.FC = () => {
         <Card className="mt-8">
           <CardHeader>
             <div className="flex justify-between items-center">
-              <CardTitle>Service History</CardTitle>
+              <CardTitle>Historial de servicio</CardTitle>
               <Badge variant="outline">{completedBookings.length}</Badge>
             </div>
           </CardHeader>
@@ -232,7 +232,7 @@ const ProfessionalDashboard: React.FC = () => {
                 ))
               ) : (
                 <p className="text-gray-500 text-center py-8">
-                  No completed services yet.
+                  Todavía no se han completado los servicios.
                 </p>
               )}
             </div>

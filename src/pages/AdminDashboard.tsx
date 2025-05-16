@@ -20,18 +20,18 @@ const AdminDashboard: React.FC = () => {
 
   // Mock recent users
   const recentUsers = [
-    { id: 1, name: 'Emma Wilson', type: 'client', joinDate: '2025-03-15' },
-    { id: 2, name: 'James Chen', type: 'professional', joinDate: '2025-03-14' },
-    { id: 3, name: 'Sofia Garcia', type: 'client', joinDate: '2025-03-14' },
-    { id: 4, name: 'Michael Kim', type: 'professional', joinDate: '2025-03-13' },
+    { id: 1, name: 'Emma Wilson', type: 'cliente', joinDate: '2025-03-15' },
+    { id: 2, name: 'James Chen', type: 'profesional', joinDate: '2025-03-14' },
+    { id: 3, name: 'Sofia Garcia', type: 'cliente', joinDate: '2025-03-14' },
+    { id: 4, name: 'Michael Kim', type: 'profesional', joinDate: '2025-03-13' },
   ];
 
   // Mock popular services
   const popularServices = [
-    { name: 'Hair Styling', bookings: 45 },
-    { name: 'Massage Therapy', bookings: 38 },
-    { name: 'Manicure & Pedicure', bookings: 32 },
-    { name: 'Makeup', bookings: 28 },
+    { name: 'Peinado', bookings: 45 },
+    { name: 'Terapia de masaje', bookings: 38 },
+    { name: 'Manicura y pedicura', bookings: 32 },
+    { name: 'Maquillaje', bookings: 28 },
   ];
 
   return (
@@ -40,10 +40,10 @@ const AdminDashboard: React.FC = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="bg-white rounded-xl p-6 mb-8 shadow-sm">
           <h1 className="text-2xl font-bold text-gray-800">
-            Welcome back, {user?.name}
+            Bienvenido de nuevo, {user?.name}
           </h1>
           <p className="text-gray-600">
-            Here's what's happening with G-UrbanGlow today.
+            Esto es lo que está sucediendo con el G-UrbanGlow hoy en día.
           </p>
         </div>
 
@@ -52,7 +52,7 @@ const AdminDashboard: React.FC = () => {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-gray-500 text-sm">Total Users</p>
+                  <p className="text-gray-500 text-sm">Total de usuarios</p>
                   <h3 className="text-2xl font-bold text-gray-800">{stats.totalUsers}</h3>
                 </div>
                 <div className="bg-pink-100 p-3 rounded-lg">
@@ -61,7 +61,7 @@ const AdminDashboard: React.FC = () => {
               </div>
               <div className="mt-4 flex items-center text-sm">
                 <Badge variant="success">+12% </Badge>
-                <span className="ml-2 text-gray-500">vs last month</span>
+                <span className="ml-2 text-gray-500">vs el mes pasado</span>
               </div>
             </CardContent>
           </Card>
@@ -70,7 +70,7 @@ const AdminDashboard: React.FC = () => {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-gray-500 text-sm">Active Bookings</p>
+                  <p className="text-gray-500 text-sm">Reservas activas</p>
                   <h3 className="text-2xl font-bold text-gray-800">{stats.activeBookings}</h3>
                 </div>
                 <div className="bg-lavender-100 p-3 rounded-lg">
@@ -79,7 +79,7 @@ const AdminDashboard: React.FC = () => {
               </div>
               <div className="mt-4 flex items-center text-sm">
                 <Badge variant="success">+5% </Badge>
-                <span className="ml-2 text-gray-500">vs last week</span>
+                <span className="ml-2 text-gray-500">vs la semana pasada</span>
               </div>
             </CardContent>
           </Card>
@@ -88,7 +88,7 @@ const AdminDashboard: React.FC = () => {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-gray-500 text-sm">Total Revenue</p>
+                  <p className="text-gray-500 text-sm">Ingresos totales</p>
                   <h3 className="text-2xl font-bold text-gray-800">${stats.totalRevenue}</h3>
                 </div>
                 <div className="bg-green-100 p-3 rounded-lg">
@@ -97,7 +97,7 @@ const AdminDashboard: React.FC = () => {
               </div>
               <div className="mt-4 flex items-center text-sm">
                 <Badge variant="success">+18% </Badge>
-                <span className="ml-2 text-gray-500">vs last month</span>
+                <span className="ml-2 text-gray-500">vs el mes pasado</span>
               </div>
             </CardContent>
           </Card>
@@ -106,7 +106,7 @@ const AdminDashboard: React.FC = () => {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-gray-500 text-sm">Completed Services</p>
+                  <p className="text-gray-500 text-sm">Servicios Completados</p>
                   <h3 className="text-2xl font-bold text-gray-800">{stats.completedBookings}</h3>
                 </div>
                 <div className="bg-yellow-100 p-3 rounded-lg">
@@ -115,7 +115,7 @@ const AdminDashboard: React.FC = () => {
               </div>
               <div className="mt-4 flex items-center text-sm">
                 <Badge variant="success">+8% </Badge>
-                <span className="ml-2 text-gray-500">vs last month</span>
+                <span className="ml-2 text-gray-500">vs el mes pasado</span>
               </div>
             </CardContent>
           </Card>
@@ -124,7 +124,7 @@ const AdminDashboard: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <Card>
             <CardHeader>
-              <CardTitle>Recent Users</CardTitle>
+              <CardTitle>Usuarios recientes</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
@@ -145,7 +145,7 @@ const AdminDashboard: React.FC = () => {
 
           <Card>
             <CardHeader>
-              <CardTitle>Popular Services</CardTitle>
+              <CardTitle>Servicios populares</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
@@ -154,7 +154,7 @@ const AdminDashboard: React.FC = () => {
                     <p className="font-medium text-gray-800">{service.name}</p>
                     <div className="flex items-center">
                       <span className="text-sm text-gray-500 mr-2">
-                        {service.bookings} bookings
+                        {service.bookings} reservas
                       </span>
                       <div 
                         className="w-24 bg-gray-200 rounded-full h-2"

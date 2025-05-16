@@ -38,19 +38,19 @@ const AuthModal: React.FC<AuthModalProps> = ({
         success = await login(email, password, userType);
         if (!success) {
           if (userType === 'admin') {
-            setError('Invalid admin credentials. Use admin@demo.com/admin123');
+            setError('Credenciales de administrador no válidas. Uso admin@demo.com/admin123');
           } else {
-            setError('Invalid credentials. For demo, use client@demo.com/password123 or professional@demo.com/password123');
+            setError('Credenciales no válidas. Para la demostración, uso client@demo.com/password123 or professional@demo.com/password123');
           }
         }
       } else {
         if (!name.trim()) {
-          setError('Name is required');
+          setError('El nombre es obligatorio');
           return;
         }
         success = await signup(email, password, name, userType);
         if (!success) {
-          setError('Email already exists');
+          setError('El correo electrónico ya existe');
         }
       }
       
@@ -58,7 +58,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
         onClose();
       }
     } catch (err) {
-      setError('An error occurred. Please try again.');
+      setError('Se ha producido un error. Por favor, inténtelo de nuevo.');
     } finally {
       setIsLoading(false);
     }
@@ -80,25 +80,25 @@ const AuthModal: React.FC<AuthModalProps> = ({
           <div className="hidden md:block bg-gradient-to-br from-pink-500 via-purple-500 to-indigo-500 p-12 lg:flex flex-col justify-center items-center text-white">
             <div className="text-center max-w-md">
               <h3 className="text-3xl font-bold mb-4">
-                {mode === 'login' ? 'Welcome Back!' : 'Join G-UrbanGlow'}
+                {mode === 'login' ? 'Bienvenido de nuevo!' : 'Comenzar G-UrbanGlow'}
               </h3>
               <p className="text-lg text-white/90 mb-8">
                 {mode === 'login' 
-                  ? 'Log in to access premium beauty & wellness services at your doorstep' 
-                  : 'Sign up to connect with top beauty professionals in your area'}
+                  ? 'Inicie sesión para acceder a servicios premium de belleza y bienestar en la puerta de su casa' 
+                  : 'Regístrese para conectarse con los mejores profesionales de la belleza en su área'}
               </p>
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">
                   <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">✓</div>
-                  <span>Book appointments instantly</span>
+                  <span className='text-left'>Reserva citas al instante</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <div className="w-10 h-8 rounded-full bg-white/20 flex items-center justify-center">✓</div>
+                  <span className='text-left'>Conéctate con profesionales verificados</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">✓</div>
-                  <span className='text-left'>Connect with verified professionals</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">✓</div>
-                  <span>Enjoy exclusive offers</span>
+                  <span className='text-left'>Disfruta de ofertas exclusivas</span>
                 </div>
               </div>
             </div>
@@ -106,7 +106,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
 
           <div className="p-12">
             <h2 className="text-3xl font-bold text-gray-800 mb-8">
-              {mode === 'login' ? 'Login' : 'Create Account'}
+              {mode === 'login' ? 'Iniciar sesión' : 'Crear una cuenta'}
             </h2>
             
             {error && (
@@ -127,7 +127,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
                     }`}
                     onClick={() => setUserType('client')}
                   >
-                    Client
+                    Cliente
                   </button>
                   <button
                     type="button"
@@ -138,7 +138,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
                     }`}
                     onClick={() => setUserType('professional')}
                   >
-                    Professional
+                    Profesional
                   </button>
                   {mode === 'login' && (
                     <button
@@ -158,33 +158,33 @@ const AuthModal: React.FC<AuthModalProps> = ({
               
               {mode === 'signup' && (
                 <Input
-                  label="Full Name"
+                  label="Nombre completo"
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   required
-                  placeholder="Enter your full name"
+                  placeholder="Ingresa tu nombre completo"
                   className="text-lg"
                 />
               )}
               
               <Input
-                label="Email"
+                label="Correo electrónico"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                placeholder="Enter your email"
+                placeholder="Ingresa tu correo electrónico"
                 className="text-lg"
               />
               
               <Input
-                label="Password"
+                label="Contraseña"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                placeholder={mode === 'login' ? "Enter your password" : "Create a password"}
+                placeholder={mode === 'login' ? "Ingresa tu contraseña" : "Crear una contraseña"}
                 className="text-lg"
               />
               
@@ -195,10 +195,10 @@ const AuthModal: React.FC<AuthModalProps> = ({
                 className="mt-2"
                 disabled={isLoading}
               >
-                {isLoading ? 'Please wait...' : (
+                {isLoading ? 'Espera...' : (
                   mode === 'login' 
-                    ? `Login as ${userType === 'admin' ? 'Admin' : userType === 'client' ? 'Client' : 'Professional'}` 
-                    : `Sign Up as ${userType === 'client' ? 'Client' : 'Professional'}`
+                    ? `Inicie sesión como ${userType === 'admin' ? 'Admin' : userType === 'client' ? 'Cliente' : 'Profesional'}` 
+                    : `Regístrese como ${userType === 'client' ? 'Cliente' : 'Profesional'}`
                 )}
               </Button>
             </form>
@@ -206,13 +206,13 @@ const AuthModal: React.FC<AuthModalProps> = ({
             <div className="mt-8 text-center">
               <p className="text-gray-600">
                 {mode === 'login' 
-                  ? "Don't have an account? " 
-                  : "Already have an account? "}
+                  ? "¿No tienes una cuenta? " 
+                  : "¿Ya tienes una cuenta? "}
                 <button 
                   onClick={onSwitchMode}
                   className="text-pink-500 hover:text-pink-600 font-medium transition-colors duration-200"
                 >
-                  {mode === 'login' ? 'Sign Up' : 'Login'}
+                  {mode === 'login' ? 'Únete' : 'Iniciar sesión'}
                 </button>
               </p>
             </div>

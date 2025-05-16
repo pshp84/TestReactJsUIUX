@@ -12,7 +12,7 @@ const Footer: React.FC = () => {
               <span className="text-xl font-bold text-gray-800">G-UrbanGlow</span>
             </div>
             <p className="text-gray-600 text-sm">
-              Bringing beauty & wellness services to your doorstep. Connecting you with top professionals for a luxurious experience at home.
+              Llevando los servicios de belleza y bienestar a la puerta de su casa. Conectándote con los mejores profesionales para una experiencia de lujo en casa.
             </p>
             <div className="flex mt-4 space-x-4">
               <a href="#" className="text-gray-400 hover:text-pink-500 transition">
@@ -28,33 +28,33 @@ const Footer: React.FC = () => {
           </div>
           
           <div>
-            <h3 className="text-gray-800 font-semibold mb-4">Quick Links</h3>
+            <h3 className="text-gray-800 font-semibold mb-4">Enlaces rápidos</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-600 hover:text-pink-500 transition text-sm">Home</a></li>
-              <li><a href="#services" className="text-gray-600 hover:text-pink-500 transition text-sm">Services</a></li>
-              <li><a href="#how-it-works" className="text-gray-600 hover:text-pink-500 transition text-sm">How It Works</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-pink-500 transition text-sm">About Us</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-pink-500 transition text-sm">Contact</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-pink-500 transition text-sm">Inicio</a></li>
+              <li><a href="#services" className="text-gray-600 hover:text-pink-500 transition text-sm">Servicios</a></li>
+              <li><a href="#how-it-works" className="text-gray-600 hover:text-pink-500 transition text-sm">Cómo Funciona</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-pink-500 transition text-sm">Acerca de</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-pink-500 transition text-sm">Contacto</a></li>
             </ul>
           </div>
           
           <div>
-            <h3 className="text-gray-800 font-semibold mb-4">Our Services</h3>
+            <h3 className="text-gray-800 font-semibold mb-4">Nuestros Servicios</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-600 hover:text-pink-500 transition text-sm">Manicure & Pedicure</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-pink-500 transition text-sm">Hair Styling</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-pink-500 transition text-sm">Massage Therapy</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-pink-500 transition text-sm">Makeup</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-pink-500 transition text-sm">Skincare</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-pink-500 transition text-sm">Manicura y pedicura</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-pink-500 transition text-sm">Peinado</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-pink-500 transition text-sm">Terapia de masaje</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-pink-500 transition text-sm">Maquillaje</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-pink-500 transition text-sm">Cuidado de la piel</a></li>
             </ul>
           </div>
           
           <div>
-            <h3 className="text-gray-800 font-semibold mb-4">Contact Us</h3>
+            <h3 className="text-gray-800 font-semibold mb-4">Contáctenos</h3>
             <ul className="space-y-2">
-              <li className="text-gray-600 text-sm">Email: info@gurbanglow.com</li>
-              <li className="text-gray-600 text-sm">Phone: +1 (123) 123-4567</li>
-              <li className="text-gray-600 text-sm">Address: xyz</li>
+              <li className="text-gray-600 text-sm">Correo electrónico: info@gurbanglow.com</li>
+              <li className="text-gray-600 text-sm">Teléfono: +1 (123) 123-4567</li>
+              <li className="text-gray-600 text-sm">Dirección: xyz</li>
             </ul>
           </div>
         </div>

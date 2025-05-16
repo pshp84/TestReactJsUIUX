@@ -46,7 +46,7 @@ const ClientDashboard: React.FC = () => {
       time: formData.time,
       status: 'pending' as const,
       address: `${formData.address}, ${formData.city}`,
-      client: user?.name || 'Client',
+      client: user?.name || 'Cliente',
       professional: 'TBD'
     };
     
@@ -73,15 +73,15 @@ const ClientDashboard: React.FC = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="bg-gradient-to-r from-pink-100 to-lavender-100 rounded-xl p-6 mb-8">
           <h1 className="text-2xl font-bold text-gray-800">
-            Welcome back, {user?.name || 'Client'}!
+            Bienvenido, {user?.name || 'Cliente'}!
           </h1>
           <p className="text-gray-600">
-            Book a new service or track your existing appointments.
+            Reserve un nuevo servicio o haga un seguimiento de sus citas existentes.
           </p>
         </div>
         
         <div className="mb-8">
-          <h2 className="text-xl font-bold text-gray-800 mb-4">Available Services</h2>
+          <h2 className="text-xl font-bold text-gray-800 mb-4">Servicios Disponibles</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map(service => (
               <div 
@@ -98,7 +98,7 @@ const ClientDashboard: React.FC = () => {
         <div>
           <Card>
             <CardHeader>
-              <CardTitle>My Bookings</CardTitle>
+              <CardTitle>Mis Reservas</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
@@ -112,7 +112,7 @@ const ClientDashboard: React.FC = () => {
                   ))
                 ) : (
                   <p className="text-gray-500 text-center py-8">
-                    You have no bookings yet. Book a service to get started!
+                    Todavía no tienes reservas. ¡Reserva un servicio para empezar!
                   </p>
                 )}
               </div>
@@ -132,40 +132,40 @@ const ClientDashboard: React.FC = () => {
             </button>
             
             <h2 className="text-xl font-bold text-gray-800 mb-4">
-              Book {selectedService?.name}
+              Reserva {selectedService?.name}
             </h2>
             
             {bookingSuccess && (
               <div className="bg-green-100 text-green-800 p-3 rounded-lg mb-4 animate-fadeIn">
-                Booking successful! Your request has been sent to professionals.
+                ¡Reserva exitosa! Su solicitud ha sido enviada a profesionales.
               </div>
             )}
             
             <form onSubmit={handleSubmit}>
               <Input
-                label="City"
+                label="Ciudad"
                 type="text"
                 name="city"
                 value={formData.city}
                 onChange={handleInputChange}
                 required
                 fullWidth
-                placeholder="Enter your city"
+                placeholder="Ingresa a tu ciudad"
               />
               
               <Input
-                label="Address"
+                label="Dirección"
                 type="text"
                 name="address"
                 value={formData.address}
                 onChange={handleInputChange}
                 required
                 fullWidth
-                placeholder="Enter your address"
+                placeholder="Ingresa tu dirección"
               />
               
               <Input
-                label="Date"
+                label="Fecha"
                 type="date"
                 name="date"
                 value={formData.date}
@@ -176,7 +176,7 @@ const ClientDashboard: React.FC = () => {
               />
               
               <Input
-                label="Time"
+                label="Hora"
                 type="time"
                 name="time"
                 value={formData.time}
@@ -191,7 +191,7 @@ const ClientDashboard: React.FC = () => {
                 fullWidth
                 className="mt-4"
               >
-                Book Now
+                Reservar ahora
               </Button>
             </form>
           </div>

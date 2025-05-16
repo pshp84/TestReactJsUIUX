@@ -33,11 +33,11 @@ const Header: React.FC = () => {
           </div>
 
           <nav className="hidden md:flex space-x-8">
-            <a href="#" className="text-gray-600 hover:text-pink-500 transition">Home</a>
-            <a href="#services" className="text-gray-600 hover:text-pink-500 transition">Services</a>
-            <a href="#how-it-works" className="text-gray-600 hover:text-pink-500 transition">How it Works</a>
-            <a href="#" className="text-gray-600 hover:text-pink-500 transition">About</a>
-            <a href="#" className="text-gray-600 hover:text-pink-500 transition">Contact</a>
+            <a href="#" className="text-gray-600 hover:text-pink-500 transition">Inicio</a>
+            <a href="#services" className="text-gray-600 hover:text-pink-500 transition">Servicios</a>
+            <a href="#how-it-works" className="text-gray-600 hover:text-pink-500 transition">Cómo Funciona</a>
+            <a href="#" className="text-gray-600 hover:text-pink-500 transition">Acerca de</a>
+            <a href="#" className="text-gray-600 hover:text-pink-500 transition">Contacto</a>
           </nav>
 
           <div className="hidden md:flex items-center space-x-4">
@@ -47,7 +47,7 @@ const Header: React.FC = () => {
                   variant="outline" 
                   onClick={logout}
                 >
-                  Logout
+                  Cerrar sesión
                 </Button>
               </>
             ) : (
@@ -56,13 +56,13 @@ const Header: React.FC = () => {
                   variant="outline" 
                   onClick={openLoginModal}
                 >
-                  Login
+                  Iniciar sesión
                 </Button>
                 <Button 
                   variant="primary" 
                   onClick={openSignupModal}
                 >
-                  Sign Up
+                  Registrarse
                 </Button>
               </>
             )}
@@ -78,11 +78,11 @@ const Header: React.FC = () => {
         {isMenuOpen && (
           <div className="md:hidden mt-4 pb-4">
             <nav className="flex flex-col space-y-4">
-              <a href="#" className="text-gray-600 hover:text-pink-500 transition py-2">Home</a>
-              <a href="#services" className="text-gray-600 hover:text-pink-500 transition py-2">Services</a>
-              <a href="#how-it-works" className="text-gray-600 hover:text-pink-500 transition py-2">How it Works</a>
-              <a href="#" className="text-gray-600 hover:text-pink-500 transition py-2">About</a>
-              <a href="#" className="text-gray-600 hover:text-pink-500 transition py-2">Contact</a>
+              <a href="#" className="text-gray-600 hover:text-pink-500 transition py-2">Inicio</a>
+              <a href="#services" className="text-gray-600 hover:text-pink-500 transition py-2">Servicios</a>
+              <a href="#how-it-works" className="text-gray-600 hover:text-pink-500 transition py-2">Cómo Funciona</a>
+              <a href="#" className="text-gray-600 hover:text-pink-500 transition py-2">Acerca de</a>
+              <a href="#" className="text-gray-600 hover:text-pink-500 transition py-2">Contacto</a>
               
               {user ? (
                 <Button 
@@ -90,7 +90,7 @@ const Header: React.FC = () => {
                   onClick={logout}
                   fullWidth
                 >
-                  Logout
+                  Cerrar sesión
                 </Button>
               ) : (
                 <div className="space-y-2">
@@ -99,14 +99,14 @@ const Header: React.FC = () => {
                     onClick={openLoginModal}
                     fullWidth
                   >
-                    Login
+                    Iniciar sesión
                   </Button>
                   <Button 
                     variant="primary" 
                     onClick={openSignupModal}
                     fullWidth
                   >
-                    Sign Up
+                    Registrarse
                   </Button>
                 </div>
               )}

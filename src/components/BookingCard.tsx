@@ -28,15 +28,15 @@ const BookingCard: React.FC<BookingCardProps> = ({
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'pending':
-        return <Badge variant="default">Pending</Badge>;
+        return <Badge variant="default">Pendiente</Badge>;
       case 'accepted':
-        return <Badge variant="success">Accepted</Badge>;
+        return <Badge variant="success">Aceptado</Badge>;
       case 'rejected':
-        return <Badge variant="error">Rejected</Badge>;
+        return <Badge variant="error">Rechazado</Badge>;
       case 'completed':
-        return <Badge variant="outline">Completed</Badge>;
+        return <Badge variant="outline">Completado</Badge>;
       default:
-        return <Badge variant="default">Pending</Badge>;
+        return <Badge variant="default">Pendiente</Badge>;
     }
   };
 
@@ -51,28 +51,28 @@ const BookingCard: React.FC<BookingCardProps> = ({
       <CardContent>
         <div className="space-y-2">
           <div className="flex justify-between text-sm">
-            <span className="text-gray-500">Date:</span>
+            <span className="text-gray-500">Fecha:</span>
             <span className="font-medium">{booking.date}</span>
           </div>
           <div className="flex justify-between text-sm">
-            <span className="text-gray-500">Time:</span>
+            <span className="text-gray-500">Hora:</span>
             <span className="font-medium">{booking.time}</span>
           </div>
           {userType === 'professional' && booking.client && (
             <div className="flex justify-between text-sm">
-              <span className="text-gray-500">Client:</span>
+              <span className="text-gray-500">Cliente:</span>
               <span className="font-medium">{booking.client}</span>
             </div>
           )}
           {userType === 'professional' && booking.address && (
             <div className="flex justify-between text-sm">
-              <span className="text-gray-500">Address:</span>
+              <span className="text-gray-500">Dirección:</span>
               <span className="font-medium">{booking.address}</span>
             </div>
           )}
           {userType === 'client' && booking.professional && (
             <div className="flex justify-between text-sm">
-              <span className="text-gray-500">Professional:</span>
+              <span className="text-gray-500">Profesional:</span>
               <span className="font-medium">{booking.professional}</span>
             </div>
           )}
@@ -85,14 +85,14 @@ const BookingCard: React.FC<BookingCardProps> = ({
             size="sm"
             onClick={() => onReject && onReject(booking.id)}
           >
-            Reject
+            Rechazar
           </Button>
           <Button 
             variant="primary" 
             size="sm"
             onClick={() => onAccept && onAccept(booking.id)}
           >
-            Accept
+            Aceptar
           </Button>
         </CardFooter>
       )}
